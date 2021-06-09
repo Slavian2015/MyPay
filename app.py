@@ -9,13 +9,13 @@ app = Flask(__name__)
 
 data_dir = "/data"
 
-logging.basicConfig(filename=data_dir + "my_flask_logs.log",
+logging.basicConfig(filename=os.path.join(data_dir, "/my_flask_logs.log"),
                     format='%(asctime)s %(message)s',
                     filemode='w')
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-database_file = "sqlite:///{}".format(os.path.join(data_dir, "data.db"))
+database_file = "sqlite:///{}".format(os.path.join(data_dir, "/data.db"))
 app.config['SQLALCHEMY_DATABASE_URI'] = database_file
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -104,14 +104,7 @@ def home():
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', debug=False, port=port)
+    app.run(host='0.0.0.0', debug=True, port=port)
 
 
-# sudo docker image build -t my-pay .
-# sudo docker run -p 5000:5000 -d my-pay
 
-# sudo docker run −it 357c08fd8e472c8057468b8ab819ace00823809f33f987fb179bf11abd52cb91 bash
-
-
-# heroku container:push web --app mypaysys
-# sudo heroku container:release web --app mypaysys
