@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form method="{{ data['data']['method'] }}" action="{{ data['data']['url'] }}">
+            {% for k, v in data['data']['data'].items() %}
+            <input name="{{ k }}" value="{{ v }}" />
+            <br />
+            {% endfor %}
+            <input type="submit"/>
+        </form>
+    </body>
+</html>
